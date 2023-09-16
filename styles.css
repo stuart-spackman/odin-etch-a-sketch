@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.main-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    border: 1px solid black;
+    height: 66vh;
+    width: 66vh;
+}
+
+.row-container {
+    display: flex;
+    /* border: 6px dotted black; */
+    flex: 1;
+}
+
+.square {
+    border: 1px solid black;
+    flex: 1;
+}
+
+.square-hover {
+    background-color: black;
+}
+
+button {
+    margin: 0 0 6px 0;
+    height: 11vh;
+    width: 33vh;
+    font-size: 3vh;
+}
