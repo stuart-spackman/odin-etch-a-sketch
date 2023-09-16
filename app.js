@@ -18,9 +18,11 @@ for (i = 0; i < 4; i++) {
 const squares = document.querySelectorAll('.square');
 for (const square of squares) {
     square.addEventListener('mouseover', () => {
-        // square.classList.add('square-hover');
         square.style.backgroundColor = getRandomColor();
-    })
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = makeDarker(square.style.backgroundColor);
+        })
+    }, { once: true })
 }
 
 const button = document.createElement('button');
@@ -58,7 +60,10 @@ function createNewGrid() {
     for (const square of squares) {
         square.addEventListener('mouseover', () => {
             square.style.backgroundColor = getRandomColor();
-        })
+            square.addEventListener('mouseover', () => {
+                square.style.backgroundColor = makeDarker(square.style.backgroundColor);
+            })
+        }, { once: true })
     }
 
 }
@@ -70,4 +75,27 @@ const getRandomColor = () => {
     const g = Math.floor(Math.random() * 255);
     const b = Math.floor(Math.random() * 255);
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+const makeDarker = (rgb) => {
+    if (rgb == '') {
+        return `rgb(255, 255, 255)`;
+    } else {
+        let reduce = rgb.substring(4, rgb.length - 1).replaceAll(' ', '');
+        console.log(reduce);
+        const rgbArray = reduce.split(',');
+        console.log(rgbArray);
+
+        let r = Math.round(parseInt(rgbArray[0]) - 255 / 10);
+        let g = Math.round(parseInt(rgbArray[1]) - 255 / 10);
+        let b = Math.round(parseInt(rgbArray[2]) - 255 / 10);
+
+        if (r < 0) r = 0;
+        if (g < 0) g = 0;
+        if (b < 0) b = 0;
+
+        console.log(r, g, b);
+
+        return `rgb(${r}, ${g}, ${b})`;
+    }
 }
